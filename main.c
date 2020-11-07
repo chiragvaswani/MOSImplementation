@@ -10,6 +10,22 @@ int main() {
 
 void INIT() {
     // insert your code here
+    int i,j;
+    for(i=0;i<100;i++)
+    {
+        for(j=0;j<4;j++)
+        {
+            mem[i][j]="\0";
+
+        }
+    }
+    readf=0;
+    toggle =0;
+    C = false;
+    PC=0;
+    SI=none;
+
+
 }
 
 LOAD() {
