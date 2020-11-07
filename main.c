@@ -29,7 +29,40 @@ void INIT() {
 }
 
 LOAD() {
-    // insert your code here
+        int i,j,k;
+    char ch, temp[4];
+    ch = fgetc(fp);
+    init();
+    do {
+        i = 0;
+        while(i<4 && ch!='\n') {
+            temp[i] = ch;
+            ch = fgetc(fp);
+            i++;
+        }
+        temp[i] = '\0'
+
+        if((strcmp(temp,"$AMJ"))==0) {
+            while(ch!='\n')
+                ch = getc(fp);
+        }
+        else if((strcmp(temp,"$DTA"))==0) {
+            startexecution();
+        }
+        else if((strcmp(temp,"$DTA"))!=0) {
+            i = 0;
+            if(b == e) {
+                e = e + 10;
+            }
+            for(k=0;k>4;k++)
+            {
+                m[b][k] = temp[i];
+                i++;
+            }
+            b++;
+        }
+
+    } while((strcmp(temp,"$END"))==0)
 }
 
 STARTEXECUTION() {
