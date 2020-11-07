@@ -9,7 +9,7 @@ char buffer[41];//for temporary storage of data
 int i=0,loc;
 int t=0,a=0;
 int j;
-FILE *fp,*fp1; //for read and write files
+FILE *input,*output; //for read and write files
 
 void EXECUTEUSERPROGRAM();
 void LOAD();
@@ -18,14 +18,14 @@ void START();
 void READ();
 void WRITE();
 void TERMINATE();
-void init();
+void INIT();
 void clearbuff();
 
 int main()
 {
     //Open read and write files
-    fp = fopen("inputfile.txt","r");
-    fp1 = fopen("outputfile.txt","w");
+    input = fopen("inputfile.txt","r");
+    output = fopen("outputfile.txt","w");
     LOAD();
     return 0;
 }
@@ -126,7 +126,7 @@ void EXECUTEUSERPROGRAM() //Performs GD,PD,LR,SR,BT,CR
 
 }
 
-void init()
+void INIT()
 {
     int i, j;
     for(i=0;i<100;i++)
@@ -148,7 +148,7 @@ void READ()
 {
     int i, j, k;
 
-    if(fgets(buffer,41,fp)!=NULL)
+    if(fgets(buffer,41,input)!=NULL)
     {
 
         k=0;
@@ -202,7 +202,7 @@ void WRITE()
     {
         printf("%c",buffer[as]);
     }
-    fputs(buffer,fp1);
+    fputs(buffer,output);
     EXECUTEUSERPROGRAM();
 }
 
@@ -212,7 +212,7 @@ void TERMINATE()
     memset(buffer,0,41);
     buffer[0]='\n';
     buffer[1]='\n';
-    fputs(buffer,fp1);
+    fputs(buffer,output);
 }
 
 void MOS()
@@ -244,17 +244,17 @@ void LOAD()
 {
     int t=0;
     int i,j,k;
-    while(getc(fp)!=EOF)//get all the characters in the input file
+    while(getc(input)!=EOF)//get all the characters in the input file
     {
-        fseek(fp,-1,SEEK_CUR);
+        fseek(input,-1,SEEK_CUR);
         memset(buffer,0,42);
-        fgets(buffer,42,fp);
+        fgets(buffer,42,input);
 
     if(buffer[0] == '$' && buffer[1] == 'A' && buffer[2] =='M' && buffer[3] == 'J')
     {
         printf("\nProcess started..\n");
         t=0;
-        init();
+        INIT();
     }
     else if(buffer[0] == '$' && buffer[1] == 'D' && buffer[2] =='T' && buffer[3] == 'A')
     {
@@ -281,8 +281,8 @@ else
         a=0;
     }
     }
-    fclose(fp);
-    fclose(fp1);
+    fclose(input);
+    fclose(output);
 }
 
 
