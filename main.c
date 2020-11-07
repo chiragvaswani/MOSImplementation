@@ -115,7 +115,7 @@ void mos() {
 
 char* READ() {
     // insert your code here
-    FILE *f = fopen("textfile.txt", "rb");
+    FILE *f = fopen("input.txt", "rb");
     fseek(f, 0, SEEK_END);
     long fsize = ftell(f);
     fseek(f, 0, SEEK_SET);  
